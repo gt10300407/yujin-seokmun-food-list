@@ -95,7 +95,10 @@ img { display: block; max-width: 100%; }
 .detail-photos::-webkit-scrollbar { display: none; }
 .detail-photos button { flex: 0 0 100%; padding: 0; overflow: hidden; border: 0; border-radius: 9px; scroll-snap-align: start; }
 .detail-photos img { width: 100%; aspect-ratio: 1.4; object-fit: cover; }
-.photo-nav { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 10px; color: var(--purple-deep); font-size: 13px; font-weight: 800; }
+.detail-image.detail-photos { margin-top: 0; aspect-ratio: 1.5; }
+.detail-image.detail-photos button { height: 100%; border-radius: 0; }
+.detail-image.detail-photos img { height: 100%; aspect-ratio: auto; }
+.photo-nav { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 0 0 18px; color: var(--purple-deep); font-size: 13px; font-weight: 800; }
 .photo-nav button { width: 44px; height: 44px; border: 2px solid var(--purple); border-radius: 50%; background: var(--cream); color: var(--purple); font-size: 26px; }
 .photo-nav button:disabled { opacity: .35; cursor: default; }
 .detail-actions { margin-top: 25px; }

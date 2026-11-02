@@ -6,7 +6,11 @@
     "category": "중식",
     "menu": "",
     "comment": "",
-    "photos": []
+    "photos": [
+      "photos/stone-jjajang-1.webp",
+      "photos/stone-jjajang-2.webp",
+      "photos/stone-jjajang-3.webp"
+    ]
   },
   {
     "id": "tofu-factory",
@@ -15,7 +19,11 @@
     "category": "한식",
     "menu": "",
     "comment": "",
-    "photos": []
+    "photos": [
+      "photos/tofu-factory-1.webp",
+      "photos/tofu-factory-2.webp",
+      "photos/tofu-factory-3.webp"
+    ]
   },
   {
     "id": "mapo-galbi",
@@ -24,7 +32,11 @@
     "category": "고기",
     "menu": "",
     "comment": "",
-    "photos": []
+    "photos": [
+      "photos/mapo-galbi-1.webp",
+      "photos/mapo-galbi-2.webp",
+      "photos/mapo-galbi-3.webp"
+    ]
   },
   {
     "id": "mother-kalguksu",
@@ -33,7 +45,11 @@
     "category": "면",
     "menu": "",
     "comment": "",
-    "photos": []
+    "photos": [
+      "photos/mother-kalguksu-1.webp",
+      "photos/mother-kalguksu-2.webp",
+      "photos/mother-kalguksu-3.webp"
+    ]
   },
   {
     "id": "maetdoroman",
@@ -42,7 +58,11 @@
     "category": "두부",
     "menu": "",
     "comment": "",
-    "photos": []
+    "photos": [
+      "photos/maetdoroman-1.webp",
+      "photos/maetdoroman-2.webp",
+      "photos/maetdoroman-3.webp"
+    ]
   },
   {
     "id": "can-pork",
@@ -60,7 +80,11 @@
     "category": "중식",
     "menu": "",
     "comment": "",
-    "photos": []
+    "photos": [
+      "photos/beijing-1.webp",
+      "photos/beijing-2.webp",
+      "photos/beijing-3.webp"
+    ]
   },
   {
     "id": "chaegreen",
@@ -69,7 +93,10 @@
     "category": "샤브",
     "menu": "",
     "comment": "",
-    "photos": []
+    "photos": [
+      "photos/chaegreen-1.webp",
+      "photos/chaegreen-2.webp"
+    ]
   },
   {
     "id": "kimchi-stew",
