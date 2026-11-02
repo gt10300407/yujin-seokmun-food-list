@@ -106,7 +106,11 @@
     "category": "한식",
     "menu": "",
     "comment": "",
-    "photos": []
+    "photos": [
+      "photos/kimchi-stew-1.webp",
+      "photos/kimchi-stew-2.webp",
+      "photos/kimchi-stew-3.webp"
+    ]
   },
   {
     "id": "big-dumpling",
