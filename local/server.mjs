@@ -6,8 +6,8 @@ import { extname } from 'node:path';
 const port = Number(process.env.PORT || 4173);
 const dataFile = new URL('../data/places.json', import.meta.url);
 const photoDir = new URL('../photos/', import.meta.url);
-const types = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.webp':'image/webp','.svg':'image/svg+xml'};
-const allowed = new Set(['/','/index.html','/app.js','/style.css','/favicon.svg','/data/places.json','/admin','/local/admin.html','/local/admin.js','/local/admin.css']);
+const types = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.webp':'image/webp'};
+const allowed = new Set(['/','/index.html','/app.js','/style.css','/data/places.json','/admin','/local/admin.html','/local/admin.js','/local/admin.css']);
 
 function send(res, status, body, type = 'application/json; charset=utf-8') { res.writeHead(status, {'Content-Type':type,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}); res.end(body); }
 async function body(req, limit) { let size=0; const chunks=[]; for await (const chunk of req) {size+=chunk.length;if(size>limit) throw new Error('파일이 너무 큽니다.');chunks.push(chunk);} return Buffer.concat(chunks); }
@@ -53,7 +53,7 @@ const server = createServer(async (req, res) => {
     }
     if (req.method !== 'GET' && req.method !== 'HEAD') return send(res,405,JSON.stringify({error:'지원하지 않는 요청입니다.'}));
     const file = path === '/' ? '/index.html' : path === '/admin' ? '/local/admin.html' : path;
-    if (!allowed.has(file) && !/^\/photos\/[a-z0-9-]+\.webp$/.test(file)) return send(res,404,'Not found','text/plain; charset=utf-8');
+    if (!allowed.has(file) && file !== '/assets/food-tour-logo.webp' && !/^\/photos\/[a-z0-9-]+\.webp$/.test(file)) return send(res,404,'Not found','text/plain; charset=utf-8');
     const content = await readFile(new URL(`..${file}`,import.meta.url));
     return send(res,200,req.method === 'HEAD' ? '' : content,types[extname(file)] || 'application/octet-stream');
   } catch (error) {
