@@ -5,7 +5,7 @@
     "address": "경기 안산시 상록구 양달말길 5 1-2층",
     "category": "중식",
     "menu": "",
-    "comment": "",
+    "comment": "돌판짜장이랑 꼬막짬뽕,시래기짬뽕은 꼭 드세요",
     "photos": [
       "photos/stone-jjajang-1.webp",
       "photos/stone-jjajang-2.webp",
@@ -18,7 +18,7 @@
     "address": "경기 안산시 상록구 예술대학로8길 3 1층",
     "category": "한식",
     "menu": "",
-    "comment": "",
+    "comment": "두부가 진짜 맛있어요 김치도 그렇고",
     "photos": [
       "photos/tofu-factory-1.webp",
       "photos/tofu-factory-2.webp",
@@ -31,7 +31,7 @@
     "address": "경기도 안산시 상록구 이동 715-8",
     "category": "고기",
     "menu": "",
-    "comment": "",
+    "comment": "여기는 된장찌개가 맛있고 고기는 당연 맛있고",
     "photos": [
       "photos/mapo-galbi-1.webp",
       "photos/mapo-galbi-2.webp",
@@ -44,7 +44,7 @@
     "address": "경기 안산시 상록구 성호로 114",
     "category": "면",
     "menu": "",
-    "comment": "",
+    "comment": "칼국수 바지락이 싱싱할때가 제일 맛있어요",
     "photos": [
       "photos/mother-kalguksu-1.webp",
       "photos/mother-kalguksu-2.webp",
@@ -53,11 +53,11 @@
   },
   {
     "id": "maetdoroman",
-    "name": "맷도로만",
+    "name": "맷돌로만",
     "address": "경기 안산시 상록구 수인로 1922 1층",
     "category": "두부",
     "menu": "",
-    "comment": "",
+    "comment": "그냥 무한리필 순두부랑 감자채전이였나? 맛있어요",
     "photos": [
       "photos/maetdoroman-1.webp",
       "photos/maetdoroman-2.webp",
@@ -70,8 +70,12 @@
     "address": "경기 안산시 상록구 광덕산2로 42 1층",
     "category": "고기",
     "menu": "",
-    "comment": "",
-    "photos": []
+    "comment": "여긴 그냥 고기가 맛있어요",
+    "photos": [
+      "photos/can-pork-1.webp",
+      "photos/can-pork-2.webp",
+      "photos/can-pork-3.webp"
+    ]
   },
   {
     "id": "beijing",
@@ -79,7 +83,7 @@
     "address": "경기 안산시 상록구 안산천동로4길 1",
     "category": "중식",
     "menu": "",
-    "comment": "",
+    "comment": "짜장면, 짬뽕 둘다 맛있어요",
     "photos": [
       "photos/beijing-1.webp",
       "photos/beijing-2.webp",
@@ -92,7 +96,7 @@
     "address": "경기 안산시 상록구 예술광장로 7",
     "category": "샤브",
     "menu": "",
-    "comment": "",
+    "comment": "국물이랑 볶음밥 김치랑 미나리 맛 최고",
     "photos": [
       "photos/chaegreen-1.webp",
       "photos/chaegreen-2.webp",
@@ -105,7 +109,7 @@
     "address": "경기 안산시 상록구 일동로 19-1 1층",
     "category": "한식",
     "menu": "",
-    "comment": "",
+    "comment": "계란말이가 거의 순두부에요",
     "photos": [
       "photos/kimchi-stew-1.webp",
       "photos/kimchi-stew-2.webp",
@@ -118,7 +122,10 @@
     "address": "경기 안산시 상록구 안산대학로 101",
     "category": "분식",
     "menu": "",
-    "comment": "",
-    "photos": []
+    "comment": "대박김밥, 쫄면, 만두도 맛있어요",
+    "photos": [
+      "photos/big-dumpling-1.webp",
+      "photos/big-dumpling-2.webp"
+    ]
   }
 ]
