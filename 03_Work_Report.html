@@ -620,7 +620,7 @@ body[data-layout="wide"] :is(.bd-head h1, .bd-lead, .bd-sec > p, .bd-sec > ul, .
 
 <header class="bd-head">
   <p class="bd-eyebrow">BROCK ANSAN FOOD MAP · 작업 보고 · 2026-11-02</p>
-  <h1>정적 사이트 기본 화면 빌드 완료 · 카카오 지도 실키 검증 대기</h1>
+  <h1>정적 사이트 빌드와 카카오 안산 지도 실호출 완료 · 식당 위치 입력 대기</h1>
   <dl class="bd-meta">
     <div><dt>보낸 사람</dt><dd>개발</dd></div>
     <div><dt>받는 사람</dt><dd>사이트 소유자</dd></div>
@@ -631,7 +631,7 @@ body[data-layout="wide"] :is(.bd-head h1, .bd-lead, .bd-sec > p, .bd-sec > ul, .
     <p class="bd-glance-h">한눈에</p>
     <ul>
       <li>6단계 중 1단계: Next.js 정적 빌드와 모바일 기본 화면 검사 완료.</li>
-      <li>2단계: 카카오 지도 SDK 코드 작성 완료, 계정 키가 없어 실제 지도 미검증.</li>
+      <li>2단계: 카카오 무료 앱에 전용 지도 키를 만들고 실제 안산 지도 타일을 로컬 모바일 화면에서 확인.</li>
       <li>실제 맛집·출발지·사진은 아직 0건. 가짜 위치·경로·시간은 표시하지 않음.</li>
       <li>카카오 도보 경로는 공식 REST API에서 제공. 비밀키를 숨길 중계 함수가 필요함.</li>
     </ul>
@@ -645,7 +645,7 @@ body[data-layout="wide"] :is(.bd-head h1, .bd-lead, .bd-sec > p, .bd-sec > ul, .
 <section class="bd-sec" id="sec-decide" data-sec="decide">
   <h2 class="bd-h2"><span class="bd-no">1</span><span class="bd-h2-t">필요한 정보</span></h2>
   <ul>
-    <li>카카오 개발자 콘솔 로그인. 무료 범위의 카카오맵 앱 설정과 JavaScript 키 발급을 이어서 진행할 수 있음.</li>
+    <li>카카오 개발자 콘솔 로그인과 전용 JavaScript 키 발급 완료. 무료 쿼터 앱을 사용하며 유료 설정은 켜지 않음.</li>
     <li>실제 방문한 식당의 이름·도로명 주소·추천 메뉴·사진과 가까운 공공장소 출발지. 정확한 집 위치는 공개하지 않음.</li>
   </ul>
 </section>
@@ -653,11 +653,12 @@ body[data-layout="wide"] :is(.bd-head h1, .bd-lead, .bd-sec > p, .bd-sec > ul, .
   <h2 class="bd-h2"><span class="bd-no">2</span><span class="bd-h2-t">결과</span></h2>
   <div class="bd-tablewrap"><table class="bd-table"><thead><tr><th>항목</th><th>상태</th><th>확인 근거</th></tr></thead><tbody>
     <tr><td>정적 사이트</td><td>완료</td><td>Next.js production build 성공, / 경로 정적 생성</td></tr>
-    <tr><td>기본 지도 화면</td><td>일부 완료</td><td>모바일 폭 390px 가로 넘침 없음, 빈 상태와 키 오류 안내 확인</td></tr>
-    <tr><td>카카오 지도 타일</td><td>미검증</td><td>JavaScript 키 및 등록 도메인 없음</td></tr>
+    <tr><td>기본 지도 화면</td><td>완료</td><td>모바일 폭 390px 가로 넘침 없음, 실제 지도 면적 390×656px</td></tr>
+    <tr><td>카카오 지도 타일</td><td>실호출 확인</td><td>안산 중심 지도 이미지 13개 로드, 콘솔 오류 0건</td></tr>
     <tr><td>맛집·출발지</td><td>입력 대기</td><td>실제 데이터 0건, 샘플 핀 없음</td></tr>
     <tr><td>보행 경로</td><td>미구현</td><td>카카오 REST API 규격만 공식 문서로 확인</td></tr>
   </tbody></table></div>
+  <figure class="bd-fig bd-c"><img src="evidence/kakao-map-mobile.png" alt="390px 모바일 화면에 실제 안산 카카오 지도가 보이는 모습" style="display:block;max-width:390px;width:100%;height:auto;margin:auto"><figcaption>로컬 모바일 화면에서 실제 카카오 지도 타일 로드 확인. 식당 데이터는 아직 0건.</figcaption></figure>
 </section>
 <section class="bd-sec" id="sec-check" data-sec="check">
   <h2 class="bd-h2"><span class="bd-no">3</span><span class="bd-h2-t">검사</span></h2>
@@ -674,13 +675,13 @@ body[data-layout="wide"] :is(.bd-head h1, .bd-lead, .bd-sec > p, .bd-sec > ul, .
     <li>GitHub Pages용 정적 Next.js 구성, 기본 지도 중심 화면·목록·필터·빈 상태 구현.</li>
     <li>TMAP 대신 카카오 지도 SDK를 쓰도록 지도 모듈 교체.</li>
     <li>카카오맵 도보 경로 API·키 종류·무료 쿼터를 공식 문서로 확인하고 명세서 수정.</li>
-    <li>카카오 키는 소스에 넣지 않았고 실제 식당과 사진을 임의로 만들지 않음.</li>
+    <li>전용 지도 키를 로컬 .env.local에만 저장하고 Git 제외 확인. 실제 식당과 사진은 임의로 만들지 않음.</li>
   </ul>
 </section>
 <section class="bd-sec" id="sec-next" data-sec="next">
   <h2 class="bd-h2"><span class="bd-no">5</span><span class="bd-h2-t">남은 일</span></h2>
   <div class="bd-tablewrap"><table class="bd-table"><thead><tr><th>단계</th><th>완료 조건</th><th>현재 막힌 것</th></tr></thead><tbody>
-    <tr><td>2 지도</td><td>실제 타일·출발 핀·식당 핀·선택 검증</td><td>카카오 계정 로그인, 실제 위치</td></tr>
+    <tr><td>2 지도</td><td>출발 핀·식당 핀·선택 검증</td><td>실제 출발지·식당 주소</td></tr>
     <tr><td>3 경로</td><td>도보 경로 중계·애니메이션 검증</td><td>REST 키와 서버 중계 배포</td></tr>
     <tr><td>4 상세</td><td>사진·정보 시트 모바일 검수</td><td>직접 찍은 사진</td></tr>
     <tr><td>5 파일 관리</td><td>파일 수정 후 공개 반영 검증</td><td>실제 식당 데이터</td></tr>
