@@ -1,38 +1,47 @@
-# BROCK ANSAN FOOD MAP
+# 유진 석문의 맛집 리스트
 
-직접 방문한 안산 맛집을 지도에서 소개하는 모바일 사이트입니다. 여섯 단계로 개발하며, 현재는 **1단계 기본 화면 완료 / 2단계 실제 카카오 지도 검증, 식당 핀 검증 전**입니다. 실제 식당과 출발지 데이터는 아직 없으므로 빈 화면이 정상입니다.
+직접 고른 안산 맛집을 사진, 추천 메뉴, 한줄평과 함께 보여주는 정적 사이트입니다. HTML·CSS·JavaScript만 사용합니다. 지도 API 키와 데이터베이스는 사용하지 않습니다.
 
-## 실행
+## 실행과 관리
 
 ```bash
-npm install
-cp .env.example .env.local
-npm run dev
+npm start
 ```
 
-카카오디벨로퍼스의 무료 쿼터 앱에 이 사이트 전용 JavaScript 키를 만들고, `http://localhost:3000`과 `https://gt10300407.github.io` 도메인을 등록했습니다. 키는 Git에서 제외된 `.env.local`에만 있습니다. 다른 컴퓨터에서 실행할 때는 해당 파일을 직접 설정해야 합니다. JavaScript 키는 브라우저에 노출되므로 카카오에서 도메인을 제한합니다. 지도 앱의 무료 쿼터는 개발자 계정에서 첫 번째로 카카오맵을 활성화한 앱에만 적용됩니다.
+- 공개 화면 미리보기: `http://localhost:4173`
+- 이 Mac의 관리 화면: `http://localhost:4173/admin`
 
-## 데이터 수정
+관리 화면에서 식당 이름·주소·종류·추천 메뉴·한줄평을 고치고 사진을 올립니다. 저장 즉시 로컬 미리보기에 반영됩니다. JPG·PNG·WebP 사진은 브라우저에서 WebP로 압축해 `photos/`에 저장합니다. 첫 번째 사진이 대표 사진입니다. 사진 순서는 화살표로 바꾸고 저장합니다. 삭제한 사진 파일은 저장할 때 제거됩니다.
 
-`data/places.ts`의 `origin`과 `restaurants`를 수정하고, 직접 촬영하거나 사용을 허락받은 사진을 `public/photos/`에 넣습니다. 실제 자택 대신 가까운 공공장소를 출발지로 등록하세요. GitHub Pages에 게시한 사이트와 데이터는 링크를 모르는 사람도 접근할 수 있습니다.
+## 누나에게 공유하기
 
-## 실제 도보 경로
-
-카카오맵의 도보 경로 REST API는 실제 경로 좌표와 거리·시간을 제공합니다. **REST API 키는 GitHub Pages의 소스나 `NEXT_PUBLIC_` 환경변수에 넣으면 안 됩니다.** 별도 중계 함수에서 키를 보관해야 합니다. 현재 중계 함수와 경로 애니메이션은 미구현이며, 지도와 식당 위치를 실키로 검증한 다음 단계에서 진행합니다. 실제 값이 없는 동안 거리·시간이나 직선 경로를 만들어 표시하지 않습니다.
-
-## 검사
+`npm run build`는 `dist/`에 공개 파일만 만듭니다. GitHub Pages 워크플로는 `main` 브랜치에 올린 뒤 이 폴더를 배포합니다. `local/` 관리자 화면과 서버 코드는 배포 대상에서 제외됩니다.
 
 ```bash
-npm run check
 npm test
 npm run build
+git add data/places.json photos index.html style.css app.js favicon.svg local scripts .github README.md 02_Functional_Spec.md 03_Work_Report.html 04_Wireframe.html
+git commit -m "Update food list"
+git push
 ```
 
-기능명세는 `02_Functional_Spec.md`, 와이어프레임은 `04_Wireframe.html`, 작업 결과는 `03_Work_Report.html`에 있습니다.
+GitHub 저장소와 Pages가 연결된 뒤 `git push`를 해야 공유 링크가 바뀝니다. 현재 저장소에는 원격 주소가 설정되지 않았습니다. GitHub Pages는 공개 웹사이트이므로 식당 정보와 사진은 누구나 볼 수 있습니다. 이전에 알려준 출발지 주소는 이 사이트에 넣지 않았습니다.
 
-## 공식 문서
+각 식당의 **카카오맵에서 주소 보기** 버튼은 데스크톱에서는 카카오 공식 검색 링크, 모바일에서는 카카오맵 공식 모바일 웹 스킴을 엽니다. 앱이 설치된 기기에서는 앱 전환이 가능하고, 설치되지 않았으면 모바일 웹으로 이어집니다. 실제 전환 모습은 휴대폰에서 확인해야 합니다.
 
-- [카카오 지도 Web 가이드](https://apis.map.kakao.com/web/guide/)
-- [카카오맵 도보 경로 REST API](https://developers.kakao.com/docs/ko/kakaomap/rest-api)
-- [카카오맵 무료 쿼터 정책](https://developers.kakao.com/docs/ko/kakaomap/common)
-- [GitHub Pages 소개](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)
+## 데이터
+
+- `data/places.json`: 식당 정보, 사진 파일 경로
+- `photos/`: 관리 화면에서 올린 사진
+- `local/`: 로컬 전용 관리 화면과 파일 저장 서버
+- `02_Functional_Spec.md`: 현재 기능명세
+- `04_Wireframe.html`: 현재 화면 구성
+- `03_Work_Report.html`: 작업 및 검증 결과
+
+실제 사진과 추천 메뉴·한줄평은 아직 입력되지 않았습니다. 세 곳의 이름과 주소는 현재 카카오 검색 결과와 다를 수 있지만, 제공한 이름·주소를 그대로 사용하라는 요청을 따랐습니다.
+
+## 참고
+
+- [카카오 지도 URL 공식 가이드](https://apis.map.kakao.com/web/guide/#mapurl)
+- [카카오맵 모바일 URL 스킴](https://apis.map.kakao.com/android_v2/docs/api-guide/urlscheme/)
+- [GitHub Pages 작업 흐름](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)

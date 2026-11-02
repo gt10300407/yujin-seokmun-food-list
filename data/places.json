@@ -1,0 +1,92 @@
+[
+  {
+    "id": "stone-jjajang",
+    "name": "돌판짜장",
+    "address": "경기 안산시 상록구 양달말길 5 1-2층",
+    "category": "중식",
+    "menu": "",
+    "comment": "",
+    "photos": []
+  },
+  {
+    "id": "tofu-factory",
+    "name": "두부공장",
+    "address": "경기 안산시 상록구 예술대학로8길 3 1층",
+    "category": "한식",
+    "menu": "",
+    "comment": "",
+    "photos": []
+  },
+  {
+    "id": "mapo-galbi",
+    "name": "원조 마포생갈비",
+    "address": "경기도 안산시 상록구 이동 715-8",
+    "category": "고기",
+    "menu": "",
+    "comment": "",
+    "photos": []
+  },
+  {
+    "id": "mother-kalguksu",
+    "name": "어머님칼국수",
+    "address": "경기 안산시 상록구 성호로 114",
+    "category": "면",
+    "menu": "",
+    "comment": "",
+    "photos": []
+  },
+  {
+    "id": "maetdoroman",
+    "name": "맷도로만",
+    "address": "경기 안산시 상록구 수인로 1922 1층",
+    "category": "두부",
+    "menu": "",
+    "comment": "",
+    "photos": []
+  },
+  {
+    "id": "can-pork",
+    "name": "깡통 삼겹살",
+    "address": "경기 안산시 상록구 광덕산2로 42 1층",
+    "category": "고기",
+    "menu": "",
+    "comment": "",
+    "photos": []
+  },
+  {
+    "id": "beijing",
+    "name": "북경",
+    "address": "경기 안산시 상록구 안산천동로4길 1",
+    "category": "중식",
+    "menu": "",
+    "comment": "",
+    "photos": []
+  },
+  {
+    "id": "chaegreen",
+    "name": "채그린 샤브샤브",
+    "address": "경기 안산시 상록구 예술광장로 7",
+    "category": "샤브",
+    "menu": "",
+    "comment": "",
+    "photos": []
+  },
+  {
+    "id": "kimchi-stew",
+    "name": "사랑담은 묵은지찌개",
+    "address": "경기 안산시 상록구 일동로 19-1 1층",
+    "category": "한식",
+    "menu": "",
+    "comment": "",
+    "photos": []
+  },
+  {
+    "id": "big-dumpling",
+    "name": "만두 대박 분식",
+    "address": "경기 안산시 상록구 안산대학로 101",
+    "category": "분식",
+    "menu": "",
+    "comment": "",
+    "photos": []
+  }
+]
