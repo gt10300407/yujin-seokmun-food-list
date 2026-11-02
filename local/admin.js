@@ -47,11 +47,27 @@ async function compress(file) {
 
 $('#admin-places').addEventListener('click', (event) => { const button = event.target.closest('[data-id]'); if (button) choose(button.dataset.id); });
 $('#add-place').addEventListener('click', () => { const id = crypto.randomUUID(); places.push({id,name:'',address:'',category:'',menu:'',comment:'',photos:[]}); choose(id); $('#edit-name').focus(); });
+$('#edit-form').addEventListener('input', () => { if (selected()) { collect(); renderList(); } });
 $('#edit-form').addEventListener('submit', async (event) => { event.preventDefault(); collect(); try { await save(); renderList(); $('#edit-title').textContent = selected().name; } catch (error) { message(error.message,true); } });
+$('#publish-site').addEventListener('click', async (event) => {
+  const button = event.currentTarget;
+  if (selected() && !$('#edit-form').reportValidity()) return;
+  button.disabled = true;
+  try {
+    if (selected()) collect();
+    await save();
+    message('GitHub에 올리는 중...');
+    const response = await fetch('/api/publish',{method:'POST'});
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || 'GitHub에 올리지 못했어요.');
+    message(result.changed ? '커밋·푸시 완료! 배포가 끝나면 공유 링크에 반영됩니다.' : 'GitHub와 동기화됐어요. 새로 올릴 변경사항은 없습니다.');
+  } catch (error) { message(error.message,true); }
+  finally { button.disabled = false; }
+});
 $('#delete-place').addEventListener('click', async () => {
   if (!confirm(`“${selected().name || '새 맛집'}”을 목록에서 삭제할까요?`)) return;
   const before = places; places = places.filter((place) => place.id !== selectedId);
-  try { await save(); choose(places[0]?.id || null); } catch (error) { places = before; message(error.message,true); }
+  try { await save(); choose(places[0]?.id || null); message('맛집을 삭제했어요. GitHub에 올리면 공유 사이트에도 반영됩니다.'); } catch (error) { places = before; renderList(); message(error.message,true); }
 });
 $('#photo-list').addEventListener('click', (event) => {
   const button = event.target.closest('[data-photo-action]'); if (!button) return;

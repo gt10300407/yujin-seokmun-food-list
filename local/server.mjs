@@ -2,12 +2,19 @@ import { createServer } from 'node:http';
 import { readFile, writeFile, rename, mkdir, unlink } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { extname } from 'node:path';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+import { fileURLToPath } from 'node:url';
 
 const port = Number(process.env.PORT || 4173);
 const dataFile = new URL('../data/places.json', import.meta.url);
 const photoDir = new URL('../photos/', import.meta.url);
 const types = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.webp':'image/webp'};
 const allowed = new Set(['/','/index.html','/app.js','/style.css','/data/places.json','/admin','/local/admin.html','/local/admin.js','/local/admin.css']);
+const git = promisify(execFile);
+const root = fileURLToPath(new URL('../', import.meta.url));
+const publishFiles = ['data/places.json','photos'];
+let publishing = false;
 
 function send(res, status, body, type = 'application/json; charset=utf-8') { res.writeHead(status, {'Content-Type':type,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}); res.end(body); }
 async function body(req, limit) { let size=0; const chunks=[]; for await (const chunk of req) {size+=chunk.length;if(size>limit) throw new Error('파일이 너무 큽니다.');chunks.push(chunk);} return Buffer.concat(chunks); }
@@ -25,6 +32,10 @@ function localRequest(req) {
   if (!/^((localhost|127\.0\.0\.1):\d+)$/.test(host)) return false;
   if (req.method === 'GET' || req.method === 'HEAD') return true;
   return req.headers.origin === `http://${host}`;
+}
+
+async function gitRun(args) {
+  return git('git',args,{cwd:root,timeout:60000,env:{...process.env,GIT_TERMINAL_PROMPT:'0'}});
 }
 
 const server = createServer(async (req, res) => {
@@ -50,6 +61,26 @@ const server = createServer(async (req, res) => {
       const path = `photos/${randomUUID()}.webp`;
       await writeFile(new URL(`../${path}`,import.meta.url),photo,{flag:'wx'});
       return send(res,201,JSON.stringify({path}));
+    }
+    if (path === '/api/publish' && req.method === 'POST') {
+      if (publishing) return send(res,409,JSON.stringify({error:'이미 GitHub에 올리는 중이에요.'}));
+      publishing = true;
+      try {
+        const {stdout:branch} = await gitRun(['branch','--show-current']);
+        if (branch.trim() !== 'main') return send(res,409,JSON.stringify({error:'main 브랜치에서만 공개할 수 있어요.'}));
+        const {stdout:pending} = await gitRun(['diff','--name-only','origin/main..HEAD']);
+        if (pending.split('\n').some(file => file && file !== 'data/places.json' && !file.startsWith('photos/'))) return send(res,409,JSON.stringify({error:'아직 공개하지 않은 다른 코드 변경이 있어요. Git 상태를 확인해 주세요.'}));
+        const {stdout:changes} = await gitRun(['status','--porcelain','--',...publishFiles]);
+        if (changes.trim()) {
+          await gitRun(['add','-A','--',...publishFiles]);
+          await gitRun(['commit','-m','Update food list','--',...publishFiles]);
+        }
+        await gitRun(['push','origin','main']);
+        return send(res,200,JSON.stringify({ok:true,changed:!!changes.trim()}));
+      } catch (error) {
+        console.error('GitHub publish failed:',error.message);
+        return send(res,502,JSON.stringify({error:'GitHub에 올리지 못했어요. 터미널에서 git push origin main을 확인해 주세요.'}));
+      } finally { publishing = false; }
     }
     if (req.method !== 'GET' && req.method !== 'HEAD') return send(res,405,JSON.stringify({error:'지원하지 않는 요청입니다.'}));
     const file = path === '/' ? '/index.html' : path === '/admin' ? '/local/admin.html' : path;

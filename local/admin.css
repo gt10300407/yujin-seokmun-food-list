@@ -9,6 +9,12 @@
 .admin-title h1 { margin: 0 0 7px; color: var(--purple-deep); font-size: 32px; letter-spacing: -.06em; }
 .admin-title p { margin: 0; color: #534d61; font-size: 13px; }
 .primary-button { min-height: 44px; padding: 11px 17px; border: 0; border-radius: 9px; background: var(--olive); color: var(--cream); font-weight: 800; white-space: nowrap; }
+.publish-panel { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-top: 22px; padding: 18px 20px; border: 2px solid var(--purple-deep); border-radius: 16px; background: #e8e3d5; }
+.publish-panel strong { color: var(--purple-deep); font-size: 16px; }
+.publish-panel p { margin: 5px 0 0; color: #534d61; font-size: 12px; line-height: 1.5; }
+.publish-actions { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.publish-actions a { color: var(--purple-deep); font-size: 12px; font-weight: 800; white-space: nowrap; }
+#publish-site:disabled { opacity: .6; cursor: wait; }
 .admin-status { min-height: 21px; margin: 18px 0 10px; color: var(--olive); font-size: 12px; font-weight: 800; }
 .admin-status.error { color: #a13d31; }
 .admin-layout { display: grid; grid-template-columns: 290px 1fr; gap: 16px; }
@@ -45,6 +51,8 @@
   .admin-title { align-items: start; }
   .admin-title h1 { font-size: 26px; }
   .admin-title p { font-size: 11px; }
+  .publish-panel { flex-direction: column; align-items: stretch; padding: 15px; }
+  .publish-actions { flex-wrap: wrap; }
   .admin-layout { grid-template-columns: 1fr; }
   .admin-list, .admin-editor { padding: 16px; }
   .admin-list > div { display: flex; gap: 7px; overflow: auto; }
