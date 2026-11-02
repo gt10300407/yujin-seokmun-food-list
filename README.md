@@ -15,17 +15,19 @@ npm start
 
 ## 누나에게 공유하기
 
+공유 링크: [유진 석문의 맛집 리스트](https://gt10300407.github.io/yujin-seokmun-food-list/)
+
 `npm run build`는 `dist/`에 공개 파일만 만듭니다. GitHub Pages 워크플로는 `main` 브랜치에 올린 뒤 이 폴더를 배포합니다. `local/` 관리자 화면과 서버 코드는 배포 대상에서 제외됩니다.
 
 ```bash
 npm test
 npm run build
-git add data/places.json photos index.html style.css app.js favicon.svg local scripts .github README.md 02_Functional_Spec.md 03_Work_Report.html 04_Wireframe.html
+git add data/places.json photos
 git commit -m "Update food list"
 git push
 ```
 
-GitHub 저장소와 Pages가 연결된 뒤 `git push`를 해야 공유 링크가 바뀝니다. 현재 저장소에는 원격 주소가 설정되지 않았습니다. GitHub Pages는 공개 웹사이트이므로 식당 정보와 사진은 누구나 볼 수 있습니다. 이전에 알려준 출발지 주소는 이 사이트에 넣지 않았습니다.
+`git push` 후 배포가 끝나면 공유 링크가 바뀝니다. GitHub Pages는 공개 웹사이트이므로 식당 정보와 사진은 누구나 볼 수 있습니다. 이전에 알려준 출발지 주소는 이 사이트에 넣지 않았습니다.
 
 각 식당의 **카카오맵에서 주소 보기** 버튼은 데스크톱에서는 카카오 공식 검색 링크, 모바일에서는 카카오맵 공식 모바일 웹 스킴을 엽니다. 앱이 설치된 기기에서는 앱 전환이 가능하고, 설치되지 않았으면 모바일 웹으로 이어집니다. 실제 전환 모습은 휴대폰에서 확인해야 합니다.
 
