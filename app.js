@@ -14,7 +14,7 @@ function kakaoUrl(place) {
 function render() {
   const categories = ['전체', ...new Set(places.map((place) => place.category))];
   $('#filters').innerHTML = categories.map((item) => `<button type="button" data-category="${escape(item)}" aria-pressed="${category === item}">${escape(item)}</button>`).join('');
-  const shown = category === '전체' ? places : places.filter((place) => place.category === category);
+  const shown = (category === '전체' ? places : places.filter((place) => place.category === category)).slice().reverse();
   $('#hero-count').textContent = places.length;
   $('#section-count').textContent = `${shown.length}곳`;
   $('#places').innerHTML = shown.length ? shown.map((place) => {

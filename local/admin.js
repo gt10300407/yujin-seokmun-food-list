@@ -7,7 +7,7 @@ function message(text, error = false) { $('#admin-status').textContent = text; $
 function selected() { return places.find((place) => place.id === selectedId); }
 function renderList() {
   $('#admin-count').textContent = places.length;
-  $('#admin-places').innerHTML = places.map((place) => `<button type="button" data-id="${escape(place.id)}" class="${selectedId === place.id ? 'selected' : ''}"><strong>${escape(place.name || '새 맛집')}</strong><small>${escape(place.category || '종류 미입력')}</small></button>`).join('');
+  $('#admin-places').innerHTML = [...places].reverse().map((place) => `<button type="button" data-id="${escape(place.id)}" class="${selectedId === place.id ? 'selected' : ''}"><strong>${escape(place.name || '새 맛집')}</strong><small>${escape(place.category || '종류 미입력')}</small></button>`).join('');
 }
 function renderPhotos() {
   const place = selected();
@@ -67,7 +67,7 @@ $('#publish-site').addEventListener('click', async (event) => {
 $('#delete-place').addEventListener('click', async () => {
   if (!confirm(`“${selected().name || '새 맛집'}”을 목록에서 삭제할까요?`)) return;
   const before = places; places = places.filter((place) => place.id !== selectedId);
-  try { await save(); choose(places[0]?.id || null); message('맛집을 삭제했어요. GitHub에 올리면 공유 사이트에도 반영됩니다.'); } catch (error) { places = before; renderList(); message(error.message,true); }
+  try { await save(); choose(places.at(-1)?.id || null); message('맛집을 삭제했어요. GitHub에 올리면 공유 사이트에도 반영됩니다.'); } catch (error) { places = before; renderList(); message(error.message,true); }
 });
 $('#photo-list').addEventListener('click', (event) => {
   const button = event.target.closest('[data-photo-action]'); if (!button) return;
@@ -97,5 +97,5 @@ $('#photo-input').addEventListener('change', async (event) => {
 try {
   const response = await fetch('/api/places');
   if (!response.ok) throw new Error('관리 데이터를 읽지 못했어요.');
-  places = await response.json(); renderList(); choose(places[0]?.id || null);
+  places = await response.json(); renderList(); choose(places.at(-1)?.id || null);
 } catch (error) { message(error.message,true); }
