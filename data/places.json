@@ -140,5 +140,18 @@
       "photos/sangol-chueotang-2.webp",
       "photos/sangol-chueotang-3.webp"
     ]
+  },
+  {
+    "id": "seonggyeong-mandu",
+    "name": "성경만두요리전문점",
+    "address": "경기도 안양시 동안구 시민대로 295",
+    "category": "한식",
+    "menu": "",
+    "comment": "",
+    "photos": [
+      "photos/seonggyeong-mandu-1.webp",
+      "photos/seonggyeong-mandu-2.webp",
+      "photos/seonggyeong-mandu-3.webp"
+    ]
   }
 ]
