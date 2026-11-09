@@ -153,5 +153,31 @@
       "photos/seonggyeong-mandu-2.webp",
       "photos/seonggyeong-mandu-3.webp"
     ]
+  },
+  {
+    "id": "dokkaebi-gamjatang",
+    "name": "도깨비 왕 감자탕",
+    "address": "경기도 안산시 상록구 양지편로 28",
+    "category": "한식",
+    "menu": "",
+    "comment": "",
+    "photos": [
+      "photos/dokkaebi-gamjatang-1.webp",
+      "photos/dokkaebi-gamjatang-2.webp",
+      "photos/dokkaebi-gamjatang-3.webp"
+    ]
+  },
+  {
+    "id": "hwangje-samgyetang",
+    "name": "황제상황버섯삼계탕",
+    "address": "경기도 안산시 상록구 이동 576-9 1층",
+    "category": "한식",
+    "menu": "",
+    "comment": "",
+    "photos": [
+      "photos/hwangje-samgyetang-1.webp",
+      "photos/hwangje-samgyetang-2.webp",
+      "photos/hwangje-samgyetang-3.webp"
+    ]
   }
 ]
